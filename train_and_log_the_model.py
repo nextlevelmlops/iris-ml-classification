@@ -13,6 +13,7 @@ import mlflow
 import numpy as np
 import pandas as pd
 from loguru import logger
+from mlflow import MlflowClient
 from mlflow.models import infer_signature
 from sklearn import datasets
 from sklearn.compose import ColumnTransformer
@@ -77,6 +78,8 @@ mlflow.autolog(disable=True)
 mlflow.set_tracking_uri("databricks")
 mlflow.set_experiment("/Shared/iris-demo")
 
+mlflow.set_registry_uri("databricks-uc")
+
 with mlflow.start_run() as run:
     run_id = run.info.run_id
     y_proba = pipeline.predict_proba(X_test)
@@ -99,5 +102,34 @@ with mlflow.start_run() as run:
         artifact_path="pyfunc-lg-pipeline-model",
         signature=signature,
     )
+
+    # Verify artifact path
+    artifact_path = f"runs:/{run_id}/pyfunc-lg-pipeline-model"
+    local_path = mlflow.artifacts.download_artifacts(artifact_uri=artifact_path)
+    logger.info(f"Artifacts downloaded to: {local_path}")
+
+    # Registering the model
+    logger.info("Registering the model")
+    catalog_name="mlops_dev0"
+    schema_name="iris_ml"
+    model_name=f"{catalog_name}.{schema_name}.iris_classification_model_custom"
+    registered_model= mlflow.register_model(
+        # model_uri=f"runs:/{run_id}/pyfunc-lg-pipeline-model",
+        model_uri=artifact_path,
+        name=model_name,
+        tags={'branch': 'dev'}
+    )
+
+    logger.info(f"✅ Model registered as version {registered_model.version}.")
+    latest_version = registered_model.version
+
+    client=MlflowClient()
+    client.set_registered_model_alias(
+        name=model_name,
+        alias="latest-model",
+        version=latest_version
+    )
+
+
 
 # COMMAND ----------
