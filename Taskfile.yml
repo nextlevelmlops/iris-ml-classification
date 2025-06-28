@@ -1,0 +1,46 @@
+version: '3'
+dotenv: [.env]
+
+vars:
+  APP_NAME: inference_app
+
+tasks:
+  validate:
+    desc: Validate your configuration
+    cmds:
+      - databricks bundle validate
+    silent: false
+
+  deploy:
+    desc: Deploy to your workspace (default is dev target)
+    cmds:
+      - databricks bundle deploy
+    silent: false
+
+  run:
+    desc: start the app in your workspace
+    cmds:
+      - databricks bundle run {{.APP_NAME}}
+    silent: false
+
+  summary:
+    desc: Retrieve the app’s URL using and some details
+    cmds:
+      - databricks bundle summary
+    silent: false
+
+  destroy:
+    desc: Destroy the bundle
+    cmds:
+      - databricks bundle destroy -t dev --auto-approve
+    silent: false
+
+  help:
+    desc: Print all tasks defined in the Taskfile
+    cmd: task -l
+    silent: true
+
+  default:
+    cmds:
+      - task: help
+    silent: true
