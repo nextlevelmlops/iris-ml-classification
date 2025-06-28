@@ -110,26 +110,21 @@ with mlflow.start_run() as run:
 
     # Registering the model
     logger.info("Registering the model")
-    catalog_name="mlops_dev0"
-    schema_name="iris_ml"
-    model_name=f"{catalog_name}.{schema_name}.iris_classification_model_custom"
-    registered_model= mlflow.register_model(
+    catalog_name = "mlops_dev0"
+    schema_name = "iris_ml"
+    model_name = f"{catalog_name}.{schema_name}.iris_classification_model_custom"
+    registered_model = mlflow.register_model(
         # model_uri=f"runs:/{run_id}/pyfunc-lg-pipeline-model",
         model_uri=artifact_path,
         name=model_name,
-        tags={'branch': 'dev'}
+        tags={"branch": "dev"},
     )
 
     logger.info(f"✅ Model registered as version {registered_model.version}.")
     latest_version = registered_model.version
 
-    client=MlflowClient()
-    client.set_registered_model_alias(
-        name=model_name,
-        alias="latest-model",
-        version=latest_version
-    )
-
+    client = MlflowClient()
+    client.set_registered_model_alias(name=model_name, alias="latest-model", version=latest_version)
 
 
 # COMMAND ----------

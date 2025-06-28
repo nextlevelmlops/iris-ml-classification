@@ -8,7 +8,7 @@ This approach is ideal for lightweight applications or for testing your model lo
 
 ## Author:
 
-- **Mehmet Acikgoz** 
+- **Mehmet Acikgoz**
 
 
 ## 🚀 Quick Start

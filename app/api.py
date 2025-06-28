@@ -1,21 +1,24 @@
+"""api module."""
+
 import os
-from requests.auth import HTTPBasicAuth
 from typing import Any
-import requests
+
 import pandas as pd
+import requests
+from requests.auth import HTTPBasicAuth
+
 
 def get_databricks_token(
     host: str,
     client_id: str = None,
     client_secret: str = None,
     grant_type: str = "client_credentials",
-    scope: str = "all-apis"
+    scope: str = "all-apis",
 ) -> str:
-    """
-    Retrieves an OAuth access token from a Databricks host using client credentials.
-    
+    """Retrieve an OAuth access token from a Databricks host using client credentials.
+
     If client_id or client_secret are not provided, the function will attempt to read them from environment variables.
-    
+
     :param host: The Databricks workspace host URL.
     :param client_id: The OAuth client ID. If not provided, uses the DATABRICKS_CLIENT_ID environment variable.
     :param client_secret: The OAuth client secret. If not provided, uses the DATABRICKS_CLIENT_SECRET environment variable.
@@ -31,23 +34,16 @@ def get_databricks_token(
     response = requests.post(
         f"{host}/oidc/v1/token",
         auth=HTTPBasicAuth(client_id, client_secret),
-        data={
-            'grant_type': grant_type,
-            'scope': scope
-        }
+        data={"grant_type": grant_type, "scope": scope},
     )
     response.raise_for_status()  # Raises an error for bad responses
     return response.json()["access_token"]
 
 
 def call_serving_endpoint(
-    serving_endpoint: str,
-    token: str,
-    input_df: pd.DataFrame,
-    data_key: str = "dataframe_split"
+    serving_endpoint: str, token: str, input_df: pd.DataFrame, data_key: str = "dataframe_split"
 ) -> dict[str, Any]:
-    """
-    Calls a model serving endpoint with a DataFrame payload and returns the JSON response.
+    """Call a model serving endpoint with a DataFrame payload and returns the JSON response.
 
     Sends the input DataFrame as a JSON payload using the specified key and authenticates using a bearer token.
 

@@ -23,7 +23,8 @@ payload_dataframe_split = json.dumps({"dataframe_split": pandas_df.to_dict(orien
 
 def test_inference_server_invocations() -> None:
     """Test model invocations using split dataframe format.
-    Verifies successful response and valid prediction format."""
+    Verifies successful response and valid prediction format.
+    """
     response = requests.post(
         f"{BASE_URL}/invocations",
         data=payload_dataframe_split,
@@ -59,7 +60,8 @@ def test_inference_server_invocations_with_dataframe_records_should_fail_when_co
 
 def test_infererence_server_invocations_with_full_dataframe() -> None:
     """Test model predictions with complete dataset.
-    Validates response status and prediction class membership."""
+    Validates response status and prediction class membership.
+    """
     CUR_DIR = pathlib.Path(__file__).parent
     test_set = pd.read_csv(f"{CUR_DIR.as_posix()}/test_data/test_set.csv")
     input_data = test_set.drop(columns=["Id", "Species"])
