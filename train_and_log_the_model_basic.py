@@ -8,15 +8,10 @@
 
 # COMMAND ----------
 
-from typing import Union
 
 import mlflow
-import numpy as np
-import pandas as pd
 from loguru import logger
-from mlflow import MlflowClient
 from mlflow.models import infer_signature
-
 from sklearn import datasets
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LogisticRegression
@@ -87,7 +82,7 @@ mlflow.autolog(disable=True)
 with mlflow.start_run() as run:
     run_id = run.info.run_id
     y_proba = pipeline.predict_proba(X_test)
-    y_pred =  pipeline.predict(X_test)
+    y_pred = pipeline.predict(X_test)
 
     # Evaluation metrics
     auc_test = roc_auc_score(y_test, y_proba, multi_class="ovr")
@@ -109,12 +104,7 @@ with mlflow.start_run() as run:
     #     signature=signature,
     # )
 
-    mlflow.sklearn.log_model(
-    sk_model=pipeline,
-    artifact_path="sklearn-lg-pipeline-model",
-    signature=signature)
-
-
+    mlflow.sklearn.log_model(sk_model=pipeline, artifact_path="sklearn-lg-pipeline-model", signature=signature)
 
     # Verify artifact path
     artifact_path = f"runs:/{run_id}/sklearn-lg-pipeline-model"

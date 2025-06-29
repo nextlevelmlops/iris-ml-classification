@@ -1,10 +1,16 @@
 """main app module."""
-
+import os
 import requests
 import streamlit as st
-from api import call_serving_endpoint, get_databricks_token
-from config import config
-from ui import display_result, inject_css, input_form, set_page, show_footer
+
+if os.getenv('DATABRICKS_WORKSPACE_ID', None):
+    from api import call_serving_endpoint, get_databricks_token
+    from config import config
+    from ui import display_result, inject_css, input_form, set_page, show_footer
+else:
+    from iris_ml_classification.api import call_serving_endpoint, get_databricks_token
+    from iris_ml_classification.config import config
+    from iris_ml_classification.ui import display_result, inject_css, input_form, set_page, show_footer
 
 
 def main() -> None:

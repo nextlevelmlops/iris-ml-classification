@@ -2,5 +2,5 @@ resources:
   apps:
     inference_app:
       name: "iris-inference-app"
-      source_code_path: ../app
+      source_code_path: ../src/iris_ml_classification
       description: "A Streamlit app for ML inference on Databricks"
