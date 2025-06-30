@@ -14,20 +14,35 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-test = [
+dev = [
     "databricks-connect==15.4.5",
     "pandas>=2.2.3",
     "pytest>=8.3.5",
+    "pytest-cov >=6.1.0",
+    "pytest-mock >=3.14.1",
     "requests>=2.32.3",
     "pip>=25.0.1",
     "ipykernel>=6.29.5, <7",
     "pre-commit==4.2.0",
+    "streamlit==1.45.1"
 ]
 
+[build-system]
+requires = ["setuptools>=72.0"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools.packages.find]
+where =["src"]
+include = ["iris_ml_classification"]
+
 [tool.pytest.ini_options]
-addopts = "-s --no-header --no-summary"
+# addopts = "-s --no-header --no-summary"
 testpaths = [ "tests" ]
 pythonpath = [ "." ]
+
+[tool.coverage.run]
+omit = ["*/__init__.py"]
 
 [tool.ruff]
 line-length = 120
