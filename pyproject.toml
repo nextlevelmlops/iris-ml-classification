@@ -41,6 +41,9 @@ include = ["iris_ml_classification"]
 testpaths = [ "tests" ]
 pythonpath = [ "." ]
 
+[tool.coverage.run]
+omit = ["*/__init__.py"]
+
 [tool.ruff]
 line-length = 120
 

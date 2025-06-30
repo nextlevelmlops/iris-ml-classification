@@ -24,7 +24,6 @@ def main() -> None:
         try:
             token = get_databricks_token(host=config.HOST)
             response = call_serving_endpoint(serving_endpoint=config.SERVING_ENDPOINT, token=token, input_df=input_df)
-            st.success(response)
             predicted_species = response["predictions"][0]
             display_result(predicted_species)
         except requests.exceptions.HTTPError as e:
