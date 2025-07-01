@@ -3,7 +3,7 @@ name: CI Workflow
 on:
   push:
     branches:
-      - 'feature/**'
+      # - 'feature/**'
   pull_request:
     branches:
       - 'main'
@@ -38,3 +38,25 @@ jobs:
         with:
           name: coverage-html
           path: htmlcov
+
+  deploy_job:
+    needs: ci_job
+    name: Deploy job
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Databricks CLI
+        uses: databricks/setup-cli@v0.246.0
+
+      - name: Deploy to Databricks
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+        run: |          
+          # Example: update a Databricks Repo in your workspace
+          databricks bundle deploy
+          databricks bundle run inference_app
+
