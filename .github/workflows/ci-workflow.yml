@@ -3,7 +3,7 @@ name: CI Workflow
 on:
   push:
     branches:
-      # - 'feature/**'
+      - 'feature/**'
   pull_request:
     branches:
       - 'main'
@@ -51,11 +51,28 @@ jobs:
       - name: Set up Databricks CLI
         uses: databricks/setup-cli@v0.246.0
 
-      - name: Deploy to Databricks
+      # - name: Deploy to Databricks
+      #   env:
+      #     DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      #     DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      #   run: |          
+      #     # Example: update a Databricks Repo in your workspace
+      #     databricks bundle deploy
+      #     databricks bundle run inference_app
+
+      - name: Authenticate Databricks CLI with Service Principal
         env:
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
         run: |
-          # Example: update a Databricks Repo in your workspace
+          databricks auth login --client-id $DATABRICKS_CLIENT_ID \
+                                --client-secret $DATABRICKS_CLIENT_SECRET \
+                                --host $DATABRICKS_HOST \
+                                --auth-type oauth
+
+      - name: Deploy to Databricks
+        run: |
           databricks bundle deploy
           databricks bundle run inference_app
+      

@@ -13,3 +13,4 @@ mlruns
 .databricks
 pyfunc-lg-pipeline-model
 test-
+.env
