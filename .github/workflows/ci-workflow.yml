@@ -52,7 +52,7 @@ jobs:
       - name: Set up Databricks CLI
         uses: databricks/setup-cli@v0.246.0
 
-      # - name: Deploy to Databricks
+      # - name: Deploy to Databricks with Personal Access Token
       #   env:
       #     DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
       #     DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
@@ -61,18 +61,11 @@ jobs:
       #     databricks bundle deploy
       #     databricks bundle run inference_app
 
-      - name: Authenticate Databricks CLI with Service Principal
+      - name: Authenticate Databricks CLI with Service Principal and Deploy to Databricks
         env:
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      #   run: |
-      #     databricks auth login --client-id $DATABRICKS_CLIENT_ID \
-      #                           --client-secret $DATABRICKS_CLIENT_SECRET \
-      #                           --host $DATABRICKS_HOST \
-      #                           --auth-type oauth
-
-      # - name: Deploy to Databricks
         run: |
           databricks bundle deploy
           databricks bundle run inference_app

@@ -12,5 +12,5 @@ uv.lock
 mlruns
 .databricks
 pyfunc-lg-pipeline-model
-test-
+test-**
 .env
