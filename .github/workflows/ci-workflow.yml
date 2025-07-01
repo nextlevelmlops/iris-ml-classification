@@ -66,13 +66,13 @@ jobs:
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-        run: |
-          databricks auth login --client-id $DATABRICKS_CLIENT_ID \
-                                --client-secret $DATABRICKS_CLIENT_SECRET \
-                                --host $DATABRICKS_HOST \
-                                --auth-type oauth
+      #   run: |
+      #     databricks auth login --client-id $DATABRICKS_CLIENT_ID \
+      #                           --client-secret $DATABRICKS_CLIENT_SECRET \
+      #                           --host $DATABRICKS_HOST \
+      #                           --auth-type oauth
 
-      - name: Deploy to Databricks
+      # - name: Deploy to Databricks
         run: |
           databricks bundle deploy
           databricks bundle run inference_app
