@@ -88,6 +88,12 @@ tasks:
       - databricks bundle destroy -t dev --auto-approve
     silent: false
 
+  destroy_as_sp:
+    desc: Destroy the bundle
+    cmds:
+      - databricks --profile service-principal-profile bundle destroy -t dev --auto-approve
+    silent: false
+
   help:
     desc: Print all tasks defined in the Taskfile
     cmd: task -l
