@@ -55,7 +55,7 @@ jobs:
       #   env:
       #     DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
       #     DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      #   run: |          
+      #   run: |
       #     # Example: update a Databricks Repo in your workspace
       #     databricks bundle deploy
       #     databricks bundle run inference_app
@@ -75,4 +75,3 @@ jobs:
         run: |
           databricks bundle deploy
           databricks bundle run inference_app
-      
