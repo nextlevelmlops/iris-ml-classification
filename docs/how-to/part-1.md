@@ -47,6 +47,64 @@
     sudo apt update
     sudo apt install code
     ```
+
+---
+## <b>How to Install the uv Python Package Manager</b>
+
+The [`uv`](https://docs.astral.sh/uv/) package manager is a modern, ultra-fast tool for managing Python environments and dependencies. It’s written in Rust and can be installed on Windows, macOS, or Linux.
+
+=== "Windows"
+
+    ```
+    # Install uv using PowerShell (recommended)
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+    ```
+
+=== "macOS"
+
+    ```
+    # Install uv using the official install script
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Or with Homebrew
+    brew install uv
+    ```
+
+=== "Linux"
+
+    ```
+    # Install uv using the official install script
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Or with wget if curl is not available
+    wget -qO- https://astral.sh/uv/install.sh | sh
+    ```
+
+!!! warning "Security Tip"
+    Before running any installation script from the internet, you can always inspect it first:
+    - For bash: `curl https://astral.sh/uv/install.sh`
+    - For PowerShell: `irm https://astral.sh/uv/install.ps1`
+
+### Verifying Your Installation
+
+After installing, check your `uv` version:
+
+```
+uv --version
+```
+
+You should see output like:  
+`uv 0.7.18 (abcdef12 2025-06-30)`
+
+## What’s Next?
+
+- [Official uv documentation](https://docs.astral.sh/uv/getting-started/installation/)
+- [Getting started video tutorial](https://www.youtube.com/watch?v=QKVQQCx-gi4)
+
+> **Tip:**  
+> uv is not only a package manager—it can also create and manage virtual environments, install Python itself, and much more. Try `uv --help` for an overview of its features.
+
+
 ## <b>How to SignUp Databricks Free Edition</b>
 
 Getting started is refreshingly simple:
