@@ -74,6 +74,8 @@ jobs:
     needs: ci_job
     name: Docs job
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       UV_SYSTEM_PYTHON: 1
     # if: github.ref == 'refs/heads/main'
