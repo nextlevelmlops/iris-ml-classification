@@ -103,3 +103,10 @@ tasks:
     cmds:
       - task: help
     silent: true
+
+# ---------------Mkdocs Documentation ----------------------
+  make-doc:
+    desc: Generate makedocs Documentation
+    cmds:
+      - uv run mkdocs serve
+    silent: false
