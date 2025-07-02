@@ -1,5 +1,4 @@
-"""
-Configuration utilities for serving endpoint settings.
+"""Configuration utilities for serving endpoint settings.
 
 This module defines the `Config` class, which loads environment variables and constructs
 the serving endpoint URL for the Iris ML Classification service.
@@ -9,6 +8,7 @@ Classes:
 
 Attributes:
     config (Config): An instance of the Config class for convenience.
+
 """
 
 import os

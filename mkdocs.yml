@@ -25,7 +25,7 @@ theme:
     - navigation.top
     - navigation.footer
   icon:
-      repo: fontawesome/brands/github   
+      repo: fontawesome/brands/github
   logo: images/iris_logo.png   # if you have a logo
   favicon: images/favicon.ico
 
@@ -93,7 +93,7 @@ plugins:
             # Others
             show_source: true
   # - with-pdf  # pip install mkdocs-with-pdf
-      
+
 # nav:
 #   - Home: index.md
 #   - Tutorials: tutorials.md
@@ -133,10 +133,3 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.highlight
   - pymdownx.superfences
-
-
-
-
-      
-
-

@@ -93,7 +93,7 @@ After installing, check your `uv` version:
 uv --version
 ```
 
-You should see output like:  
+You should see output like:
 `uv 0.7.18 (abcdef12 2025-06-30)`
 
 ## What’s Next?
@@ -101,7 +101,7 @@ You should see output like:
 - [Official uv documentation](https://docs.astral.sh/uv/getting-started/installation/)
 - [Getting started video tutorial](https://www.youtube.com/watch?v=QKVQQCx-gi4)
 
-> **Tip:**  
+> **Tip:**
 > uv is not only a package manager—it can also create and manage virtual environments, install Python itself, and much more. Try `uv --help` for an overview of its features.
 
 
@@ -109,40 +109,40 @@ You should see output like:
 
 Getting started is refreshingly simple:
 
-1. **Visit the [Databricks Free Edition signup page](https://www.databricks.com/product/data-intelligence-platform)**  
+1. **Visit the [Databricks Free Edition signup page](https://www.databricks.com/product/data-intelligence-platform)**
    This is where you’ll begin your registration process.
 
-2. **Choose your preferred signup method**  
+2. **Choose your preferred signup method**
    You can sign up using Google, Microsoft, or your email address for maximum flexibility.
 
-3. **Complete the registration**  
+3. **Complete the registration**
    Fill in the required details. Databricks will provision your personal workspace immediately after you finish.
 
-4. **Start exploring your workspace**  
+4. **Start exploring your workspace**
    Once inside, you’ll have access to a personal workspace with serverless compute and default storage, so you can begin experimenting and building right away.
 
 !!! info "What is Databricks Free Edition?"
     Databricks Free Edition is a no-cost version of Databricks designed for students, educators, hobbyists, and anyone interested in learning or experimenting with data and AI. It’s ideal for learning, prototyping, and collaborative exploration, and includes many of the same features as the full Databricks platform in a serverless, quota-limited environment.
 
-**Want a visual walkthrough?**  
+**Want a visual walkthrough?**
 [Watch this step-by-step video guide on YouTube.](https://www.youtube.com/watch?v=4bV7k_5o7Zg)
 
 ## <b>How to create a Personal Access Token - PAT in Databricks Free Edition</b>
 For Step-by-Step Instructions (Standard Workflow), follow these steps:
 
-1. **Click your username in the top bar**  
+1. **Click your username in the top bar**
    This opens your user menu.
 
-2. **Select User Settings**  
+2. **Select User Settings**
    This brings you to your account and workspace configuration options.
 
-3. **Navigate to Developer and the Access tokens, then click Manage**  
+3. **Navigate to Developer and the Access tokens, then click Manage**
    Here, you can view and manage your existing tokens.
 
-4. **Click Generate new token and follow the prompts**  
+4. **Click Generate new token and follow the prompts**
    You’ll be asked to name your token and set an optional expiration.
 
-5. **Copy and save your new token**  
+5. **Copy and save your new token**
    You will only see the token once. Store it securely!
 
 !!! warning "Security Reminder"
@@ -151,7 +151,7 @@ For Step-by-Step Instructions (Standard Workflow), follow these steps:
     - Store your token in a secure location, such as a password manager.
     - If you believe your token has been compromised, revoke it immediately in the Access Tokens tab.
 
-> **Tip:**  
+> **Tip:**
 > You can also [watch this short video walkthrough](https://youtube.com/shorts/W_JgII34sBo?si=xbA9ZRsmi_8ReH2x) for a visual guide.
 
 ## <b>How to install Databricks CLI</b>
