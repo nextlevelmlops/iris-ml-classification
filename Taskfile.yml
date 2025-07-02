@@ -61,31 +61,31 @@ tasks:
   validate:
     desc: Validate your configuration
     cmds:
-      - databricks bundle validate
+      - databricks --profile DEFAULT bundle validate
     silent: false
 
   deploy:
     desc: Deploy to your workspace (default is dev target)
     cmds:
-      - databricks bundle deploy
+      - databricks --profile DEFAULT bundle deploy
     silent: false
 
   run:
     desc: start the app in your workspace
     cmds:
-      - databricks bundle run {{.APP_NAME}}
+      - databricks --profile DEFAULT bundle run {{.APP_NAME}}
     silent: false
 
   summary:
     desc: Retrieve the app’s URL using and some details
     cmds:
-      - databricks bundle summary
+      - databricks --profile DEFAULT bundle summary
     silent: false
 
   destroy:
     desc: Destroy the bundle
     cmds:
-      - databricks bundle destroy -t dev --auto-approve
+      - databricks --profile DEFAULT bundle destroy -t dev --auto-approve
     silent: false
 
   destroy_as_sp:
