@@ -36,6 +36,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    # This must be the first Streamlit command  whenever the app runs
+    # This must be the first Streamlit command  whenever the app runs.
     set_page()
     main()
