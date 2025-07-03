@@ -3,8 +3,7 @@ name: CI Workflow
 on:
   push:
     branches:
-      - 'main'
-      - 'feature/**'
+      - '**'
   pull_request:
     branches:
       - 'main'
@@ -44,15 +43,24 @@ jobs:
     needs: ci_job
     name: Deploy job
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'pull_request' && needs.ci_job.result == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
+      - name: Check for changes in src/
+        id: changed-src
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            src/**
+
       - name: Set up Databricks CLI
+        if: steps.changed-src.outputs.any_changed == 'true'
         uses: databricks/setup-cli@v0.246.0
 
       # - name: Deploy to Databricks with Personal Access Token
+      #   if: steps.changed-src.outputs.any_changed == 'true'
       #   env:
       #     DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
       #     DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
@@ -62,6 +70,7 @@ jobs:
       #     databricks bundle run inference_app
 
       - name: Authenticate Databricks CLI with Service Principal and Deploy to Databricks
+        if: steps.changed-src.outputs.any_changed == 'true'
         env:
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
@@ -78,24 +87,36 @@ jobs:
       contents: write
     env:
       UV_SYSTEM_PYTHON: 1
-    # if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'pull_request' && needs.ci_job.result == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
+      - name: Check for changes in docs/ or mkdocs.yml
+        id: changed-docs
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            docs/**
+            mkdocs.yml
+
       - name: Configure Git Credentials
+        if: steps.changed-docs.outputs.any_changed == 'true'
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - name: Install uv
+        if: steps.changed-docs.outputs.any_changed == 'true'
         uses: astral-sh/setup-uv@v6.3.1
         with:
           python-version: '3.11'
 
       - name: Install dependencies
+        if: steps.changed-docs.outputs.any_changed == 'true'
         run: |
           uv sync --all-extras
 
       - name: Deploy to GitHub Pages
+        if: steps.changed-docs.outputs.any_changed == 'true'
         run: uv run mkdocs gh-deploy --force
