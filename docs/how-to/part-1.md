@@ -109,8 +109,11 @@ You should see output like:
 
 Getting started is refreshingly simple:
 
-1. **Visit the [Databricks Free Edition signup page](https://www.databricks.com/product/data-intelligence-platform)**
-   This is where you’ll begin your registration process.
+1. **Visit the [Databricks Free Edition signup page](https://login.databricks.com/?dbx_source=www&intent=SIGN_UP&tuuid=e2fe8752-c9b7-4159-8926-8cddb59b4a98&rl_aid=8e213271-79ac-4d70-855e-ecd62f117a50)**
+   This is where you’ll begin your registration process. Click the link which is shown by red arrow in the following image.
+
+![Databricks Free Edition Signup](../images/dababricks_free_edition_signup.png)
+
 
 2. **Choose your preferred signup method**
    You can sign up using Google, Microsoft, or your email address for maximum flexibility.
